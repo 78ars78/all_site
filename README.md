@@ -1,1 +1,1 @@
-# are
+nginx + php + mysql + phpmyadmin
