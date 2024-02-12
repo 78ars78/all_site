@@ -3,7 +3,7 @@ version: '3.8'
 services:
   php:
     build: ./php
-    container_name: ools_php-php
+    container_name: tools_php-php
     environment:
       - MYSQL_HOST=mysql 
       - MYSQL_DATABASE=test_db 
@@ -14,7 +14,7 @@ services:
     volumes:
       - ./src:/var/www
     ports:
-      - "9002:9000"
+      - "9000:9000"
     depends_on:
       - mysql  
     networks:
@@ -22,10 +22,10 @@ services:
 
   nginx:
     image: nginx:stable-alpine
-    container_name: ools_php-nginx
+    container_name: tools_php-nginx
     restart: unless-stopped
     ports:
-      - 82:80
+      - 80:80
     volumes:
       - ./src:/var/www
       - ./nginx:/etc/nginx/conf.d 
@@ -38,7 +38,7 @@ services:
 
   mysql:
     image: mysql:8.0.29
-    container_name: ools_php-mysql
+    container_name: tools_php-mysql
     restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=s123123
@@ -49,7 +49,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin:latest 
-    container_name: ools_php-phpmyadmin
+    container_name: tools_php-phpmyadmin
     restart: unless-stopped
     environment:
       - PMA_ARBITRARY=1
@@ -57,7 +57,7 @@ services:
       - MEMORY_LIMIT=1024M
       - MAX_EXECUTION_TIME=300  
     ports:
-      - 8082:80
+      - 8081:80
     depends_on:
       - mysql 
     networks:
